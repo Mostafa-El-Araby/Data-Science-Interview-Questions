@@ -1,0 +1,5 @@
+def max_three(input):
+  input.sort()
+  prob1 = input[-1] * input[-2] * input[-3]
+  prob2 = input[0] * input[1] * input[-1]
+  return max(prob1, prob2)
