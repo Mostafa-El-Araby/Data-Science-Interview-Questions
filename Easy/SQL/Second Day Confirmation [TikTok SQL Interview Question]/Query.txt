@@ -1,0 +1,7 @@
+SELECT
+  email.user_id
+FROM emails AS email INNER JOIN texts AS t
+ON email.email_id = t.email_id
+WHERE DATE_PART('day', t.action_date - email.signup_date) = 1
+AND t.signup_action = 'Confirmed'
+GROUP BY email.user_id;

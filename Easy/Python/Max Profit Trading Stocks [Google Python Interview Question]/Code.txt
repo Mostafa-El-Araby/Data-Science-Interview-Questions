@@ -1,0 +1,7 @@
+def max_subarray_sum(prices):
+  min_index = prices.index(min(prices))
+  maxi = -1
+  for i in range(min_index + 1, len(prices)):
+    if prices[i] > maxi:
+      maxi = prices[i]
+  return maxi - min(prices)

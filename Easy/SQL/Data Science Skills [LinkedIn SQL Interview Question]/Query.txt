@@ -1,0 +1,14 @@
+WITH CTE AS
+(
+  SELECT
+    candidate_id,
+    skill
+  FROM candidates
+  WHERE skill IN('Python', 'Tableau', 'PostgreSQL')
+)
+SELECT
+  candidate_id
+FROM CTE
+GROUP BY candidate_id
+HAVING COUNT(skill) = 3
+ORDER BY candidate_id ASC;

@@ -1,0 +1,9 @@
+def missing_int(input: list[int])-> int:
+  maxi = max(input)
+  freq = [0 for _ in range(maxi + 1)]
+  for num in input:
+      freq[num] +=1
+  for i in range(maxi + 1):
+    if freq[i] == 0:
+      return i
+  return maxi + 1

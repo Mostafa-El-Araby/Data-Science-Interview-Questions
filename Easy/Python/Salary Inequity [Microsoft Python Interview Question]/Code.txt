@@ -1,0 +1,4 @@
+def min_inequity(salaries, n):
+  salaries.sort()
+  minimum_inequity = max(salaries[:n]) - min(salaries[:n])
+  return minimum_inequity

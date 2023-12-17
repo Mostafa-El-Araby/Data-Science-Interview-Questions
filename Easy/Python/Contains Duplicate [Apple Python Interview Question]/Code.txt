@@ -1,0 +1,5 @@
+def contains_duplicate(input)-> bool:
+  input_set = set(input)
+  if len(input_set) != len(input):
+    return True
+  return False

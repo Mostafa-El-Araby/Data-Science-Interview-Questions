@@ -1,0 +1,15 @@
+WITH CTE AS
+(
+  SELECT
+  user_id,
+  COUNT(tweet_id) AS Number_Of_Tweets
+  FROM tweets
+  WHERE EXTRACT(YEAR FROM tweet_date) = 2022
+  GROUP BY user_id
+)
+SELECT
+  Number_Of_Tweets AS "tweet_bucket",
+  COUNT(user_id) AS "users_num"
+FROM CTE
+GROUP BY 1
+ORDER BY 1 ASC;
