@@ -1,0 +1,14 @@
+WITH CTE AS
+(
+  SELECT
+    product_id,
+    category,
+    name,
+    SUM(CASE WHEN category IS NOT NULL THEN 1 ELSE 0 END) OVER(ORDER BY product_id ASC) AS group_No
+  FROM products
+)
+SELECT
+  product_id,
+  COALESCE(category, FIRST_VALUE(category) OVER(PARTITION BY group_No ORDER BY product_id ASC)) AS category,
+  name
+FROM CTE;
