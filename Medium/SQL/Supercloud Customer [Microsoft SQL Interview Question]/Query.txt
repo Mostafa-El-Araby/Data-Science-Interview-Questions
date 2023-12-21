@@ -1,0 +1,14 @@
+WITH Grouping AS
+(
+  SELECT
+    cc.customer_id,
+    COUNT(DISTINCT p.product_category) AS No_Of_Categories
+  FROM customer_contracts AS cc
+  INNER JOIN products AS p ON cc.product_id = p.product_id
+  GROUP BY cc.customer_id
+)
+SELECT
+  g.customer_id
+FROM Grouping g
+WHERE g.No_Of_Categories = (SELECT COUNT(DISTINCT product_category) FROM products)
+ORDER BY g.customer_id;
