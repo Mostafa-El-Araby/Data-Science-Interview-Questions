@@ -1,0 +1,16 @@
+WITH CTE AS
+(
+  SELECT
+    user_id,
+    MAX(transaction_date) AS transaction_date
+  FROM user_transactions
+  GROUP BY user_id
+)
+SELECT
+  CTE.transaction_date,
+  CTE.user_id,
+  COUNT(trans.user_id) AS purchase_count
+FROM CTE INNER JOIN user_transactions AS trans
+ON trans.user_id = CTE.user_id AND trans.transaction_date = CTE.transaction_date
+GROUP BY CTE.transaction_date, CTE.user_id
+ORDER BY CTE.transaction_date ASC;
