@@ -1,0 +1,19 @@
+WITH CTE AS
+(
+  SELECT
+    employee_id,
+    salary,
+    title,
+    (AVG(salary) OVER(PARTITION BY title)) * 2 AS double_salary,
+    (AVG(salary) OVER(PARTITION BY title)) * 0.5 AS half_salary
+  FROM employee_pay
+)
+SELECT
+  employee_id,
+  salary,
+  CASE
+    WHEN salary > double_salary THEN 'Overpaid'
+    WHEN salary < half_salary THEN 'Underpaid'
+  END AS status
+FROM CTE
+WHERE salary > double_salary OR salary < half_salary;
