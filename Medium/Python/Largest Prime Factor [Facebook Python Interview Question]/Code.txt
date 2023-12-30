@@ -1,0 +1,19 @@
+def is_prime(target):
+  if target < 2 or target % 2 == 0:
+    return False
+  elif target == 2:
+    return True
+  for i in range(3, int(target ** 0.5) + 1, 2):
+    if target % i == 0:
+      return False
+  return True
+def largest_prime_factor(target):
+  if target < 2:
+    return -1
+  i = 2
+  while i * i <= target:
+    if target % i == 0:
+      target //= i
+    else:
+      i += 1
+  return target if target != 1 else i
