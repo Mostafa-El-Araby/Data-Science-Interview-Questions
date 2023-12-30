@@ -1,0 +1,9 @@
+import math
+def corr(x, y):
+  sum_x_multiply_y = sum([a * b for a, b in zip(x, y)])
+  sum_x, sum_y = sum(x), sum(y)
+  numerator = (len(x) * sum_x_multiply_y) - (sum_x * sum_y)
+  sum_x_squared = sum([elem * elem for elem in x])
+  sum_y_squared = sum([elem * elem for elem in y])
+  Denominator = math.sqrt((len(x) * sum_x_squared - math.pow(sum(x), 2)) * ((len(x) * sum_y_squared) - (math.pow(sum(y), 2))))
+  return numerator / Denominator
